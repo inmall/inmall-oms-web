@@ -194,5 +194,5 @@
 
 <style>
   .el-main{padding:0;}
-  .child-page{padding:20px;}
+  .child-page{padding:5px 20px;}
 </style>

@@ -119,8 +119,26 @@ body {
     width: 100%;
     height: 60px;
   }
+  .page-header-title{
+    border-bottom: 1px dotted #E2E2E2;
+    width:100%;
+    padding-bottom:10px;
+  }
+  .align-right{
+    text-align:right;
+  }
 }
 
 .inline-block {
   display: inline-block;
 }
+.clearfix{
+  width:100%;
+  display:block;
+  clear:both;
+}
+
+.search-area{
+
+}
+.data-table-bottom{margin-top:20px;}

@@ -4,7 +4,6 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
-import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 import '@/assets/theme/index.css'
 import '@/assets/css/index.scss'
 import VueIconFont from 'vue-icon-font'
@@ -18,8 +17,7 @@ import '@/assets/font/iconfont.css'
 import '@/assets/font/iconfont.js'
 
 Vue.use(ElementUI, {
-  size: 'small',
-  locale
+  size: 'small'
 })
 
 Vue.config.productionTip = false

@@ -21,6 +21,24 @@ export default new Router({
             group: 'System'
           }
         },
+        {
+          path: 'goods/item/index',
+          name: 'itemList',
+          component: () => import('@/views/goods/item/list'),
+          meta:{
+            title: '商品列表',
+            group: 'Goods'
+          }
+        },
+        {
+          path: 'goods/item/add',
+          name: 'itemAdd',
+          component: () => import('@/views/goods/item/add'),
+          meta:{
+            title: '商品列表',
+            group: 'Goods'
+          }
+        },
       ]
     },
     {
