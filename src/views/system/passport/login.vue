@@ -1,5 +1,6 @@
 <template>
-  <el-container>
+  <div class="login-container">
+    <el-container>
     <el-header>
       <div class="logo">
         <icon name="inmall-in"></icon> 印象商城
@@ -7,7 +8,7 @@
 
     </el-header>
     <el-main>
-      <el-form :model="loginForm" :rules="loginRules" ref="hintMsg" label-position="left" label-width="0px" class="login-container">
+      <el-form :model="loginForm" :rules="loginRules" ref="hintMsg" label-position="left" label-width="0px" class="login-form">
         <h3 class="title">管理运营后台-登录</h3>
         <el-form-item prop="account">
           <el-input type="text" v-model="loginForm.username" auto-complete="off" placeholder="账号" prefix-icon="el-icon-user">
@@ -26,7 +27,8 @@
       </el-form>
 
     </el-main>
-  </el-container>
+    </el-container>
+  </div>
 </template>
 
 <script>
@@ -78,8 +80,7 @@
 </script>
 
 <style lang="scss" scoped>
-
-  body{
+body{
     .el-container{
       background:#75b9e6;
       width:100%;
@@ -89,7 +90,14 @@
     .el-header{margin:0 auto;margin-top:50px;text-align: center;}
     .logo{font-size:36px;line-height:120px;color:#fff;}
     .el-main{padding:0px;}
-    .login-container {
+    min-height: 100%;
+    width: 100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    background-color: #75b9e6;
+    overflow: hidden;
+    .login-form {
       /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
       -webkit-border-radius: 5px;
       border-radius: 5px;
