@@ -8,13 +8,25 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Layout',
+      component: () => import('@/views/system/layout/main'),
+      redirect: '/dashboard',
+      children:[
+        {
+          path: 'dashboard',
+          name: 'dashboard',
+          component: () => import('@/views/system/dashboard/index'),
+          meta:{
+            title: '控制台',
+            group: 'System'
+          }
+        },
+      ]
     },
     {
       path: '/login',
       name: 'Login',
-      component: () => import('@/views/passport/login')
+      component: () => import('@/views/system/passport/login')
     }
   ]
 })

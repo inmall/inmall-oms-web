@@ -1,0 +1,126 @@
+$header-bg-color: #18bc9c;
+$header-logo-color:#15a589;
+$header-text-color:#fff;
+$left-menu-bg-color:#2c3b41;
+html {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.app {
+  $solidBorder: 1px solid #eee;
+  $sideCollapsedWidth: 66px;
+  $sideExpandedWidth: 230px;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  font-size: 1em;
+  width: 100%;
+  height: 100%;
+  min-width: 900px;
+  display: flex;
+  display: -webkit-flex;
+  flex-flow: row nowrap;
+  &-side {
+    width: 230px;
+    height: 100%;
+    font-weight: 700;
+    color:$header-text-color;
+    background-color: $left-menu-bg-color;
+    &-left {
+      background-color: $left-menu-bg-color;
+    }
+    &-logo {
+      height: 60px;
+      line-height:60px;
+      padding-left:20px;
+      font-size:30px;
+      background-color:$header-logo-color;
+    }
+    &-collapsed {
+      width: 66px!important;
+    }
+    &-expanded {
+      width: 230px!important;
+    }
+    .el-submenu .el-menu-item:before {
+      background: #425668;
+      bottom: auto;
+      content: "";
+      height: 8px;
+      left: 23px;
+      margin-top: 15px;
+      position: absolute;
+      right: auto;
+      width: 8px;
+      z-index: 1;
+      border-radius: 50%
+    }
+
+    .el-submenu .el-menu-item:after {
+      border-left: 1px solid #425668;
+      bottom: 0;
+      content: "";
+      left: 27px;
+      position: absolute;
+      top: 0
+    }
+    .el-submenu ul{background:$left-menu-bg-color;}
+    .el-submenu .el-menu-item.active:before{background: #18bc9c;}
+    .el-submenu .el-menu-item.active:after{border-left:1px solid #fff;}
+  }
+  &-header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: $header-bg-color;
+    color:$header-text-color;
+    &-top-sidebar {
+      position: absolute;
+      right: 0;
+      margin-right: 25px;
+      display: flex;
+      flex-flow: row nowrap;
+      height: 60px;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .el-menu{
+      background-color: $header-bg-color;
+    }
+    .el-dropdown {
+      color:$header-text-color;
+    }
+    i{
+      color:$header-text-color;
+    }
+  }
+  &-body {
+    font-size: 1em;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    overflow-y: scroll;
+  }
+  &-footer {
+    width: 100%;
+    height: 60px;
+  }
+}
+
+.inline-block {
+  display: inline-block;
+}

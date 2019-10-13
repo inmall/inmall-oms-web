@@ -1,11 +1,10 @@
 <template>
   <el-container>
     <el-header>
-      <el-image :src="logoImg">
-        <div slot="placeholder" class="image-slot">
-            加载中<span class="dot">...</span>
-        </div>
-      </el-image>
+      <div class="logo">
+        <icon name="inmall-in"></icon> 印象商城
+      </div>
+
     </el-header>
     <el-main>
       <el-form :model="loginForm" :rules="loginRules" ref="hintMsg" label-position="left" label-width="0px" class="login-container">
@@ -35,7 +34,7 @@
     export default {
         data() {
             return {
-                logoImg: require('../../assets/images/logo.png'),
+                logoImg: require('../../../assets/images/logo.png'),
                 loginHandling: false,
                 loginForm: {
                     username: '',
@@ -79,15 +78,24 @@
 </script>
 
 <style lang="scss" scoped>
+
   body{
-    background:#75b9e6;
+    .el-container{
+      background:#75b9e6;
+      width:100%;
+      height:100%;
+      position:fixed;
+    }
+    .el-header{margin:0 auto;margin-top:50px;text-align: center;}
+    .logo{font-size:36px;line-height:120px;color:#fff;}
+    .el-main{padding:0px;}
     .login-container {
       /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
       -webkit-border-radius: 5px;
       border-radius: 5px;
       -moz-border-radius: 5px;
       background-clip: padding-box;
-      margin: 120px auto;
+      margin: 50px auto;
       width: 350px;
       padding: 35px 35px 15px 35px;
       background: #fff;
