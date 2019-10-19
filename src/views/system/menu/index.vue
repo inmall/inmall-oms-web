@@ -1,3 +1,3 @@
 <template>
-  <div>password</div>
+  <div>menu list</div>
 </template>

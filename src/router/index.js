@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import {getToken} from '@/util/token'
+import NProgress from 'nprogress'
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   routes: [
     {
       path: '/',
@@ -39,6 +40,15 @@ export default new Router({
             group: 'Goods'
           }
         },
+        {
+          path: 'system/menu/list',
+          name: 'menuList',
+          component: () => import('@/views/system/menu/index'),
+          meta:{
+            title: '菜单列表',
+            group: 'system'
+          }
+        },
       ]
     },
     {
@@ -48,3 +58,19 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  NProgress.start();
+  const token = getToken();
+  if (!token && to.path != '/login') {
+    next({ path: '/login' })
+  } else {
+    next()
+  }
+});
+
+router.afterEach(transition => {
+  NProgress.done();
+})
+
+export default router

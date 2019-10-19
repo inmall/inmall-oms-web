@@ -8,20 +8,21 @@
 
     </el-header>
     <el-main>
-      <el-form :model="loginForm" :rules="loginRules" ref="hintMsg" label-position="left" label-width="0px" class="login-form">
+      <el-form :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px" class="login-form"
+               status-icon>
         <h3 class="title">管理运营后台-登录</h3>
-        <el-form-item prop="account">
+        <el-form-item prop="username">
           <el-input type="text" v-model="loginForm.username" auto-complete="off" placeholder="账号" prefix-icon="el-icon-user">
           </el-input>
         </el-form-item>
-        <el-form-item prop="checkPass">
+        <el-form-item prop="password">
           <el-input type="password" v-model="loginForm.password" auto-complete="off" placeholder="密码" prefix-icon="el-icon-lock">
 
           </el-input>
         </el-form-item>
         <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
         <el-form-item style="width:100%;">
-          <el-button type="primary" style="width:100%;" @click.native.prevent="login" :loading="loginHandling">登录</el-button>
+          <el-button type="primary" style="width:100%;" @click="handleLogin('loginForm')" :loading="loading" :disabled="disabled">登录</el-button>
           <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
         </el-form-item>
       </el-form>
@@ -33,11 +34,11 @@
 
 <script>
     import {Message} from 'element-ui';
+    import {login} from '@/api/system/passport';
     export default {
         data() {
             return {
-                logoImg: require('../../../assets/images/logo.png'),
-                loginHandling: false,
+                loading: false,
                 loginForm: {
                     username: '',
                     password: ''
@@ -45,35 +46,48 @@
                 loginRules: {
                     username: [
                         { required: true, message: '请输入账号', trigger: 'blur' },
-                        //{ validator: validaePass }
+                        { min: 3, max: 50, message: '账号长度在 3 到 50 个字符', trigger: 'blur' }
                     ],
                     password: [
                         { required: true, message: '请输入密码', trigger: 'blur' },
-                        //{ validator: validaePass2 }
+                        { min: 6, max: 50, message: '密码长度在 6 到 50 个字符', trigger: 'blur' }
                     ]
                 },
                 checked: true,
+                disabled: false
             };
         },
         created(){
 
         },
         methods: {
-            login() {
-                let vm = this;
-                if(vm.form.username.trim()==''){
-                    Message({
-                        type: 'warning',
-                        message: '输入的用户名不正确哦',
-                        duration: 1500
-                    });
-                }else{
-                    vm.loginHandling = true;
-                    sessionStorage.setItem('user', JSON.stringify(vm.form.username));
-                    setTimeout(function(){
-                        vm.$router.push({path: '/'});
-                    },1500);
-                }
+            handleLogin(formName) {
+                let self = this;
+                this.$refs[formName].validate((valid) => {
+                    if(valid){
+                        this.disabled = true;
+                        //
+                       login(self.loginForm.username, self.loginForm.password).then(result => {
+                            self.disabled = false;
+                            if (result.code == 200) {
+                                this.$store.commit("LOGIN", result.data);
+                                this.$message({
+                                    message: '恭喜你，登录成功',
+                                    type: 'success'
+                                });
+                                this.$router.push("/");
+                            } else {
+                                this.$message({
+                                    message: result.message,
+                                    type: 'error'
+                                });
+                            }
+                        });
+                        this.loading = false;
+                    }else{
+                        return false;
+                    }
+                })
             }
         }
     }

@@ -6,6 +6,7 @@ import router from './router'
 import ElementUI from 'element-ui'
 import '@/assets/theme/index.css'
 import '@/assets/css/index.scss'
+import 'nprogress/nprogress.css'
 import VueIconFont from 'vue-icon-font'
 import store from '@/store'
 Vue.use(VueIconFont)
