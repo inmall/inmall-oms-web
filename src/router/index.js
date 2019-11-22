@@ -62,11 +62,12 @@ const router =  new Router({
 router.beforeEach((to, from, next) => {
   NProgress.start();
   const token = getToken();
-  if (!token && to.path != '/login') {
+  /*if (!token && to.path != '/login') {
     next({ path: '/login' })
   } else {
     next()
-  }
+  }*/
+  next();
 });
 
 router.afterEach(transition => {

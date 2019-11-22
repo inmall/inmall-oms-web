@@ -9,6 +9,7 @@ import '@/assets/css/index.scss'
 import 'nprogress/nprogress.css'
 import VueIconFont from 'vue-icon-font'
 import store from '@/store'
+import Mock from './mock/';
 Vue.use(VueIconFont)
 
 /* font-class */
